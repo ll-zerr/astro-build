@@ -2,3 +2,14 @@
 const { platform, username } = Astro.props;
 ---
 <a href={`https://www.${platform}.com/${username}`} aria-label={`Laura Zerr on ${platform}`} target="_blank">{platform}</a>
+
+<style>
+  a {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #4c1d95;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right:1rem;
+  }
+</style>
