@@ -45,12 +45,25 @@ if (!sortedPosts || sortedPosts.length === 0) {
 
             li {
                 display: flex;
+                justify-content: space-around;
                 align-items: center;
                 margin-bottom: 30px;
+                max-width: 500px;
             }
 
-            .post-text-container {
-                margin-right: 100px;
+            li img {
+                width: 12.5rem;
+            }
+
+             @media screen and (max-width: 640px) {
+                li {
+                    flex-direction: column;
+                    margin-bottom: 50px;
+                }
+
+                li img {
+                    width: 18.75rem;
+                }
             }
         </style>
 	</head>
@@ -71,7 +84,7 @@ if (!sortedPosts || sortedPosts.length === 0) {
                         <p>Author: {post.data.author}</p>
                     </div>
                     <div class="post-img-container">
-                        <img src={post.data.image.url} width="200" alt={post.data.image.alt} />
+                        <img src={post.data.image.url} alt={post.data.image.alt} />
                     </div>
                 </li>
             ))}
