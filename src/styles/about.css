@@ -1,0 +1,9 @@
+h1 {
+    color: rgb(6, 0, 128);
+    font-size: 4rem;
+}
+.skill {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+}
