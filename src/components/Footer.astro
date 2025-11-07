@@ -8,6 +8,20 @@ import Social from './Social.astro';
     gap: 1rem;
     margin-top: 2rem;
   }
+
+  @media screen and (max-width: 540px) {
+    footer {
+      flex-direction: column;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding-left: 0;
+      gap: 20px;
+    }
+  }
 </style>
 
 <footer>
