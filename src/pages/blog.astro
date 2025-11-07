@@ -1,8 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 
 const pageTitle = "Blog Page 💻";
+const posts = await getCollection('posts');
+
+// Define the expected shape of post frontmatter
+interface PostData {
+    url: string;
+  title: string;
+  pubDate: Date;
+  author: string;
+  description?: string;  // Optional
+  image?: {
+    url: string;
+    alt: string;
+  };  // Optional
+  tags?: string[];  // Optional
+}
+
+// Add error handling
+if (!posts) {
+  throw new Error('No posts found in the collection');
+}
 ---
 
 <html lang="en">
@@ -27,9 +48,13 @@ const pageTitle = "Blog Page 💻";
         <p>This is where I will post about my journey learning Astro.</p>
 
         <ul>
-            <li><a href="/posts/post-1/">Post 1</a></li>
-            <li><a href="/posts/post-2/">Post 2</a></li>
-            <li><a href="/posts/post-3/">Post 3</a></li>
+            {posts.map((post) => (
+                <li>
+                    <a href={post.data.url}>{post.data.title}</a>
+                    <p>Published: {post.data.pubDate.toLocaleDateString()}</p>
+                    <p>Author: {post.data.author}</p>
+                </li>
+            ))}
         </ul>
 
         </BaseLayout>
