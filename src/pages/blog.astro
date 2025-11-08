@@ -1,28 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
-import { getCollection } from 'astro:content';
-
+import BlogPost from '../components/BlogPost.astro';
+// import { getCollection } from 'astro:content';
 const pageTitle = "Blog Page 💻";
 
 // Fetch posts and sort them by publication date (newest first)
-const posts = await getCollection('posts');
-const sortedPosts = [...posts].sort((a, b) => 
-    b.data.pubDate.getTime() - a.data.pubDate.getTime()
-);
+const postsArray = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as Post[];
+const sortedPosts = postsArray.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
 
 // Define the expected shape of post frontmatter
-interface PostData {
-    url: string;
-  title: string;
-  pubDate: string;
-  author: string;
-  description?: string;  // Optional
-  image: {
-    url: string;
-    alt: string;
-  };  // Optional
-  tags?: string[];  // Optional
+interface Post {
+    frontmatter: {
+        url: string;
+        title: string;
+        pubDate: string;
+        author: string;
+        description?: string;  // Optional
+        image: {
+            url: string;
+            alt: string;
+        };  // Optional
+        tags?: string[];  // Optional
+    }
 }
 
 // Add error handling
@@ -42,29 +42,6 @@ if (!sortedPosts || sortedPosts.length === 0) {
             ul {
                 padding: 30px 0 0;
             }
-
-            li {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                margin-bottom: 30px;
-                max-width: 500px;
-            }
-
-            li img {
-                width: 12.5rem;
-            }
-
-            @media screen and (max-width: 640px) {
-                li {
-                    flex-direction: column;
-                    margin-bottom: 50px;
-                }
-
-                li img {
-                    width: 18.75rem;
-                }
-            }
         </style>
 	</head>
 	<body>
@@ -76,7 +53,9 @@ if (!sortedPosts || sortedPosts.length === 0) {
         <p>This is where I will post about my journey learning Astro.</p>
 
         <ul>
-            {sortedPosts.map((post) => (
+            <!-- {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)} -->
+            {sortedPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} pubDate={post.frontmatter.pubDate} author={post.frontmatter.author} image={post.frontmatter.image} />)}
+            <!-- {sortedPosts.map((post) => (
                 <li>
                     <div class="post-text-container">
                         <a href={post.data.url}>{post.data.title}</a>
@@ -87,7 +66,7 @@ if (!sortedPosts || sortedPosts.length === 0) {
                         <img src={post.data.image.url} alt={post.data.image.alt} />
                     </div>
                 </li>
-            ))}
+            ))} -->
         </ul>
 
         </BaseLayout>

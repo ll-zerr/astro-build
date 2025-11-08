@@ -1,0 +1,39 @@
+---
+const { title, url, pubDate, author, image} = Astro.props;
+---
+<style>
+    li {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 30px;
+        max-width: 500px;
+    }
+
+    li img {
+        width: 12.5rem;
+    }
+
+    @media screen and (max-width: 640px) {
+        li {
+            flex-direction: column;
+            margin-bottom: 50px;
+        }
+
+        li img {
+            width: 18.75rem;
+        }
+    }
+    
+</style>
+
+<li>
+    <div class="post-text-container">
+        <a href={url}>{title}</a>
+        <p>Published: {pubDate}</p>
+        <p>Author: {author}</p>
+    </div>
+    <div class="post-img-container">
+        <img src={image.url} alt={image.alt} />
+    </div>
+</li>
