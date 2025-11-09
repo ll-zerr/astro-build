@@ -2,12 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
 import BlogPost from '../components/BlogPost.astro';
-// import { getCollection } from 'astro:content';
+
 const pageTitle = "Blog Page 💻";
 
 // Fetch posts and sort them by publication date (newest first)
 const postsArray = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as Post[];
 const sortedPosts = postsArray.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
+
+// Format the pubDate for display
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}/${month}/${day}`;
+}
 
 // Define the expected shape of post frontmatter
 interface Post {
@@ -53,20 +62,7 @@ if (!sortedPosts || sortedPosts.length === 0) {
         <p>This is where I will post about my journey learning Astro.</p>
 
         <ul>
-            <!-- {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)} -->
-            {sortedPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} pubDate={post.frontmatter.pubDate} author={post.frontmatter.author} image={post.frontmatter.image} />)}
-            <!-- {sortedPosts.map((post) => (
-                <li>
-                    <div class="post-text-container">
-                        <a href={post.data.url}>{post.data.title}</a>
-                        <p>Published: {post.data.pubDate.toLocaleDateString()}</p>
-                        <p>Author: {post.data.author}</p>
-                    </div>
-                    <div class="post-img-container">
-                        <img src={post.data.image.url} alt={post.data.image.alt} />
-                    </div>
-                </li>
-            ))} -->
+            {sortedPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} pubDate={formatDate(post.frontmatter.pubDate)} author={post.frontmatter.author} image={post.frontmatter.image} />)}
         </ul>
 
         </BaseLayout>
