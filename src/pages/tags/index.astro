@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const pageTitle = "Tag Index 🏷️";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+        <!-- <style>
+            ul {
+                padding: 30px 0 0;
+            }
+        </style> -->
+	</head>
+	<body>
+        <BaseLayout pageTitle = {pageTitle}>
+
+        <h1>This is a tags index page!</h1>
+
+        </BaseLayout>
+        <script>
+            import "../../scripts/menu.js";
+        </script>
+    </body>
+</html>
