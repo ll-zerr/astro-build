@@ -3,29 +3,59 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/global.css';
 
 const pageTitle = "Tag Index 🏷️";
+
+// Fetch posts
+const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true })) as Post[];
+
+// Return list of unique tags
+const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+
+// Define the expected shape of post frontmatter
+interface Post {
+    frontmatter: {
+        url: string;
+        title: string;
+        pubDate: string;
+        author: string;
+        description?: string;  // Optional
+        image: {
+            url: string;
+            alt: string;
+        };  // Optional
+        tags?: string[];  // Optional
+    }
+}
 ---
+        
+<BaseLayout pageTitle = {pageTitle}>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <!-- <style>
-            ul {
-                padding: 30px 0 0;
-            }
-        </style> -->
-	</head>
-	<body>
-        <BaseLayout pageTitle = {pageTitle}>
+    <div class="tags">
+        {tags.map((tag) => (
+            <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+        ))}
+    </div>
 
-        <h1>This is a tags index page!</h1>
+</BaseLayout>
 
-        </BaseLayout>
-        <script>
-            import "../../scripts/menu.js";
-        </script>
-    </body>
-</html>
+<style>
+    a {
+        color: #00539F;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        margin: 0.25em;
+        border: dotted 1px #a1a1a1;
+        border-radius: .5em;
+        padding: .5em 1em;
+        font-size: 1.15em;
+        background-color: #F8FCFD;
+    }
+</style>
+<script>
+    import "../../scripts/menu.js";
+</script>
