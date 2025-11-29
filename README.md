@@ -6,20 +6,21 @@ This project initiated from the desire to learn how to use Astro and Starlight f
 - [Project Details](#project-details)
 - [View My Project](#view-my-project)
 - [Features](#features)
-- [Technology Used](#️technology-used)
+- [Technology Used](#technology-used)
 - [My Process](#my-process)
 - [Continued Development](#continued-development)
 - [How to Start Your Own Astro Project](#how-to-start-your-own-astro-project)
-- [Acknowledgements](#acknowledgments)
+- [Acknowledgements](#acknowledgements)
 
-## 📝 Project Details
-## 🔗 View My Project
-## ✨ Features
-## 🛠️ Technology Used
-## 🧭My Process
-## 🔃 Continued Development
+<h2 id="project-details">📝 Project Details</h2>
+<h2 id="view-my-project">🔗 View My Project</h2>
+<h2 id="features">✨ Features</h2>
+<h2 id="technology-used">🛠️ Technology Used</h2>
+<h2 id="my-process">🧭 My Process</h2>
+<h2 id="continued-development">🔃 Continued Development</h2>
 
-## 🚀 How to Start Your Own Astro Project
+<h2 id="how-to-start-your-own-astro-project"> 🚀 How to Start Your Own Astro Project</h2>
+
 ### Astro Starter Kit: Minimal Template
 
 ```sh
@@ -62,4 +63,4 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check the [Astro documentation](https://docs.astro.build) or jump into Astro's [Discord server](https://astro.build/chat).
 
-## 🙏🏻 Acknowledgments
+<h2 id="acknowledgements">🙏🏻 Acknowledgments</h2>
