@@ -21,6 +21,11 @@ h1 {
 }
 
 /* nav styles */
+nav {
+  display: flex;
+    justify-content: space-between;
+}
+
 .menu {
   background-color: #0d0950;
   border: none;
