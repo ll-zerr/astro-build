@@ -14,16 +14,17 @@ const identity = {
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 
 const happy = true;
-const finished = false;
+const finished = true;
 const goal = 5;
 
-const skillColor = "crimson";
+const skillColorLight = "crimson";
+const skillColorDark = "#fbcad3";
 const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
 <BaseLayout pageTitle= {pageTitle}>
-    <style define:vars={{skillColor, fontWeight, textCase}}></style>
+    <style define:vars={{skillColorLight, skillColorDark, fontWeight, textCase}}></style>
 
     <h2>... and my new Astro site!</h2>
 

@@ -4,9 +4,13 @@ import Navigation from "./Navigation.astro"
 import ThemeIcon from "./ThemeIcon.astro"
 ---
 <header>
-    <nav>
-        <Menu />
+    <nav class="nav-container">
+        <div class="nav-top">
+            <Menu />
+            <ThemeIcon />
+        </div>
+        
         <Navigation />
-        <ThemeIcon />
+        
     </nav>
 </header>

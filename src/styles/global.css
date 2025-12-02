@@ -21,9 +21,15 @@ h1 {
 }
 
 /* nav styles */
-nav {
+.nav-container {
   display: flex;
-    justify-content: space-between;
+  flex-direction: column;
+}
+
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .menu {
@@ -85,7 +91,21 @@ html.dark {
   color: #ff9776;
 }
 
+.dark li img {
+  border: #fff solid 1px;
+  filter: drop-shadow(6px 7px 4px rgba(255, 255, 255, 0.3));
+}
+
 @media screen and (min-width: 640px) {
+  .nav-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .nav-top {
+    width: auto;
+  }
+
   .nav-links {
     margin-left: 5em;
     display: block;
